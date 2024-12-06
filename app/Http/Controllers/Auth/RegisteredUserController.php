@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use App\Models\Readings;
+use App\Models\Balances;
 
 class RegisteredUserController extends Controller
 {
@@ -76,7 +77,7 @@ class RegisteredUserController extends Controller
                 2 => rand(1, 15) + rand(0, 99) / 100,   // Холодная вода, м³
                 3 => rand(1, 10) + rand(0, 99) / 100,   // Горячая вода, м³
                 4 => rand(1, 5),    // Общедомовые услуги, человек
-                5 => rand(50, 500) / 100 // Отопление, Гкал
+                5 => rand(50, 300) / 100 // Отопление, Гкал
             };
 
             Readings::create([
@@ -86,6 +87,11 @@ class RegisteredUserController extends Controller
             ]);
 
         }
+
+        Balances::create([
+            'user_id' => $user_id, // ID авторизованного пользователя
+            'balance_value' => 0, 
+        ]);
 
     }
 

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('readings', function (Blueprint $table) {
+        Schema::create('OperationsHistory', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->unsignedTinyInteger('reading_type');
-            $table->decimal('reading_value', 8, 2);
-            $table->boolean('CalculatedInDebt')->default(false);
-            $table->timestamps();
+            $table->string('Description', length: 256);
+            $table->timestamp('DateTime', precision: 0);
         });
     }
 
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('readings');
+        Schema::dropIfExists('OperationsHistory');
     }
 };
