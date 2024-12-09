@@ -67,7 +67,11 @@ class CalculateDebts extends Command
                                 ->first();
 
                             if ($previousReading) {
-                                $diff = $reading->reading_value - $previousReading->reading_value;
+                                if ($previousReading->reading_type != 4) { // для тко разницу не берем
+                                    $diff = $reading->reading_value - $previousReading->reading_value;
+                                } else {
+                                    $diff = $reading->reading_value;
+                                }
                             } else {
                                 $diff = $reading->reading_value;
                             }
