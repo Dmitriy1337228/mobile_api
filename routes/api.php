@@ -19,7 +19,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();    
 });
 Route::middleware(['auth:sanctum'])->get('/balance', function (Request $request) {
-    return response()->json((Balances::where('user_id',Auth::id())->first())->balance_value);
+    return response()->json(strval((Balances::where('user_id',Auth::id())->first())->balance_value));
 });
 Route::middleware(['auth:sanctum'])->get('/lastreadings', function (Request $request) {
 
