@@ -19,7 +19,9 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();    
 });
 Route::middleware(['auth:sanctum'])->get('/balance', function (Request $request) {
-    return response()->json(strval((Balances::where('user_id',Auth::id())->first())->balance_value));
+    return response()->json([
+        'value' => strval((Balances::where('user_id',Auth::id())->first())->balance_value)
+    ]);
 });
 Route::middleware(['auth:sanctum'])->get('/lastreadings', function (Request $request) {
 
@@ -29,10 +31,12 @@ Route::middleware(['auth:sanctum'])->get('/lastreadings', function (Request $req
                                 ->limit(5) 
                                 ->get();
 
-    return response()->json($previousReadings);
+    return response()->json(['value' => $previousReadings]);
 });
 Route::middleware(['auth:sanctum'])->get('/operationshistory', function (Request $request) {
-    return response()->json(OperationsHistory::where('user_id',Auth::id())->get());
+    return response()->json([
+        'value' => OperationsHistory::where('user_id',Auth::id())->get()
+    ]);
 });
 Route::middleware(['auth:sanctum'])->post('/topupbalance', function (Request $request) {
 
