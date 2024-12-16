@@ -65,19 +65,19 @@ class ReadingsController extends Controller
 
         $validRanges = [
             1 => function ($value) {
-                return $value >= 50 && $value <= 500;
+                return $value >= 50;
             },
             2 => function ($value) {
-                return $value >= 1 && $value <= 100;
+                return $value >= 1;
             },
             3 => function ($value) {
-                return $value >= 1 && $value <= 100;
+                return $value >= 1;
             },
             4 => function ($value) {
-                return $value >= 1 && $value <= 5;
+                return $value >= 1;
             },
             5 => function ($value) {
-                return $value >= 0.5 && $value <= 100;
+                return $value >= 0.5;
             },
         ];
 
